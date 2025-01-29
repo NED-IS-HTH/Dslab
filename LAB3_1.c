@@ -1,30 +1,27 @@
 #include <stdio.h>              
 
-void arr2d_create(int n, int a[][]);
-void copy_part_arr(int size, int a[][], int start_ele ,int b[][]) ;
-int moving_average(int size, int c[][]);
+void arr2d_create(int n, int a[][n]);
+void moving_average(int size, int a[][7],int i,int j,int B[][5]);
+void Print_arr(int n, int a[][n]);
 
 int main()
 {
     int arr[7][7];
-    arr_create(7, arr);
+    arr2d_create(7, arr);
     
     int B[5][5];
     for (int i = 0; i < 7 - 3 + 1; i++)
     {
         for (int j = 0; j < 7 - 3 + 1; j++)
         {
-            int C[3][3];
-            copy_part_arr(3, arr, i, C);
-            int avg = moving_average(3, C);
-            B[i][j] = avg;
+            moving_average(3, arr, i, j, B)
         }
     }
     
     return 0;
 }
 
-void arr2d_create(int n, int a[][])
+void arr2d_create(int n, int a[][n])
 {
     printf("Enter elements:\n");
     for(int i = 0; i < n; i++)
@@ -37,23 +34,31 @@ void arr2d_create(int n, int a[][])
     }
 }
 
-void copy_part_arr(int size, int a[][], int start_ele ,int b[][]) 
+void moving_average(int size, int a[][7],int i,int j,int B[][5])
 {
-    int k = 0;
+    int sum = 0;
+    for(int k = 0; k < size; k++)
+    {
+        for(int l = 0; l < size; l++)
+        {
+            sum += a[i+k][j+l];
+        }
+    }
+    B[i][j] = sum/9;
+}
+
+/*void copy_part_arr(int size, int a[][7], int start_ele,int b[][size]) 
+{
     for(int i = 0; i < size; i++)
     {
         for(int j = 0; j < size; j++)
         {
-            if(i >= start_ele && j >= start_ele)
-            {
-                b[k] = a[i][j];
-                k++;
-            }
+            b[i][j] = a[start_ele + i][start_ele + j];
         }
     }
 }
 
-int moving_average(int size, int c[][])
+int moving_average(int size, int c[][size])
 {
     int sum = 0;
     for(int i = 0; i < size; i++)
@@ -64,4 +69,16 @@ int moving_average(int size, int c[][])
         }
     }
     return sum/(size*size);
+}*/
+
+void Print_arr(int n, int a[][n])
+{
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
 }
