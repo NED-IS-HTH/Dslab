@@ -8,7 +8,7 @@ int main()
 {
     int arr[7][7];
     arr2d_create(7, arr);
-    
+    Print_arr(7, arr);
     int B[5][5];
     for (int i = 0; i < 7 - 3 + 1; i++)
     {
@@ -17,7 +17,7 @@ int main()
             moving_average(3, arr, i, j, B)
         }
     }
-    
+    Print_arr(5,B);
     return 0;
 }
 
