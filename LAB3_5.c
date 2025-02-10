@@ -49,8 +49,8 @@ int Partition_exchange(int arr[], int low, int high)
         
     }
     int temp = arr[ei];
-    arr[ei] = pivot;
-    pivot = temp;
+    arr[ei] = arr[low];
+    arr[low] = temp;
 
     return ei;
 }
