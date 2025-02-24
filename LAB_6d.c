@@ -65,6 +65,21 @@ int main()
     print(head);
 
     struct Node *temp = head;
-    int A[100];
-    for
+    int A[100] = {0};
+
+    int count = 0;
+
+    while (temp != NULL)
+    {
+        A[temp->data]++;
+        if (A[temp->data] > 1)
+        {
+            del_at_pos(count);
+        }
+        count++;
+        temp = temp->next;
+    }
+
+    print(head);
+    return 0;
 }
