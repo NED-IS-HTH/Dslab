@@ -24,7 +24,7 @@ void del_at_beg(struct Node** head_ref)
     }
     else
     { 
-        *head-ref = (*head_ref)->next;
+        *head_ref = (*head_ref)->next;
         (*head_ref)->prev = NULL;
         free(temp);
     }
@@ -64,7 +64,7 @@ void del_at_pos(struct Node **head, int pos)
     }
     else if (pos == 1)
     {
-        del_at_beg(**head);
+        del_at_beg(head);
     }
     else
     {
@@ -77,8 +77,14 @@ void del_at_pos(struct Node **head, int pos)
                 return;
             }
         }
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
+        if (temp->next != NULL)
+        {
+            temp->next->prev = temp->prev;
+        }
+        if (temp->prev != NULL)
+        {
+            temp->prev->next = temp->next;
+        }
         free(temp);
     }
 }
