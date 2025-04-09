@@ -1,0 +1,75 @@
+// Implementing a queue using an array in C
+#include <stdio.h>
+
+void enqueue(int queue[], int rear, int front, int val);
+void dequeue(int queue[], int front, int rear);
+
+int main()
+{
+    int queue[5], front = -1, rear = -1, val, choice;
+    while (1)
+    {
+        printf("1. Enqueue\n2. Dequeue\n3. Exit\nEnter your choice: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+            case 1:
+                printf("Enter value to enqueue: ");
+                scanf("%d", &val);
+                enqueue(queue, rear, front, val);
+                break;
+            case 2:
+                dequeue(queue, front, rear);
+                break;
+            case 3:
+                return 0;
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+    return 0;
+}
+
+void enqueue(int queue[], int rear, int front, int val)
+{
+    if (rear == sizeof(queue)/sizeof(queue[0])-1)
+    {
+        printf("Queue is full\n");
+        return;
+    }
+    else if (front == -1 && rear == -1)
+    {
+        front = 0;
+        rear = 0;
+        queue[rear] = val;
+        return;
+    }
+    else
+    {
+        rear++;
+        queue[rear] = val;
+        return;
+    }
+    printf("Enqueued %d\n", val);
+}
+
+void dequeue(int queue[], int front, int rear)
+{
+    if (front == -1 || front == rear)
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+    else if (front == rear)
+    {
+        queue[front] = NULL;
+        front = -1;
+        rear = -1;
+    }
+    else
+    {
+        queue[front] = NULL;
+        front++;
+    }
+    printf("Dequeued \n");
+}
